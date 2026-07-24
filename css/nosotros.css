@@ -6,6 +6,30 @@
 .nosotros-imagen { flex: 1; }
 .nosotros-imagen img { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
+/* INPUT DE FECHA */
+#fecha {
+    padding: 12px 15px;
+    font-size: 1.05em;
+    border: 2px solid #d35400;
+    border-radius: 8px;
+    color: #333;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+#fecha:hover {
+    border-color: #e67e22;
+    box-shadow: 0 4px 12px rgba(211, 84, 0, 0.2);
+}
+
+#fecha:focus {
+    outline: none;
+    border-color: #d35400;
+    box-shadow: 0 0 0 3px rgba(211, 84, 0, 0.1);
+}
+
 /* CONTENEDORES DE MISIÓN Y VISIÓN */
 .mision-vision-contenedor {
     display: flex;
