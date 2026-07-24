@@ -1,33 +1,33 @@
 .nosotros-section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
 .nosotros-contenido { display: flex; gap: 40px; align-items: center; margin-bottom: 50px; }
 .nosotros-texto { flex: 1; }
-.nosotros-texto h2 { color: #d35400; font-size: 2.5em; margin-bottom: 20px;}
-.nosotros-texto p { line-height: 1.6; font-size: 1.1em; margin-bottom: 15px; }
+.nosotros-texto h2 { color: #052659; font-size: 2.5em; margin-bottom: 20px;}
+.nosotros-texto p { line-height: 1.6; font-size: 1.1em; margin-bottom: 15px; color: #1a1a1a; }
 .nosotros-imagen { flex: 1; }
-.nosotros-imagen img { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.nosotros-imagen img { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(2, 16, 36, 0.15); }
 
 /* INPUT DE FECHA */
 #fecha {
     padding: 12px 15px;
     font-size: 1.05em;
-    border: 2px solid #d35400;
+    border: 2px solid #052659;
     border-radius: 8px;
-    color: #333;
-    background-color: #fff;
+    color: #021024;
+    background-color: #ffffff;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-bottom: 20px;
 }
 
 #fecha:hover {
-    border-color: #e67e22;
-    box-shadow: 0 4px 12px rgba(211, 84, 0, 0.2);
+    border-color: #5483b3;
+    box-shadow: 0 4px 12px rgba(5, 38, 89, 0.2);
 }
 
 #fecha:focus {
     outline: none;
-    border-color: #d35400;
-    box-shadow: 0 0 0 3px rgba(211, 84, 0, 0.1);
+    border-color: #052659;
+    box-shadow: 0 0 0 3px rgba(5, 38, 89, 0.1);
 }
 
 /* CONTENEDORES DE MISIÓN Y VISIÓN */
@@ -39,21 +39,21 @@
 }
 .mv-caja {
     flex: 1;
-    background: #fff;
+    background: #ffffff;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border-top: 4px solid #d35400;
+    box-shadow: 0 4px 15px rgba(2, 16, 36, 0.1);
+    border-top: 4px solid #052659;
     text-align: center;
 }
 .mv-caja h3 {
-    color: #333;
+    color: #021024;
     font-size: 1.8em;
     margin-top: 0;
     margin-bottom: 15px;
 }
 .mv-caja p {
-    color: #555;
+    color: #1a1a1a;
     line-height: 1.6;
     font-size: 1.05em;
 }
