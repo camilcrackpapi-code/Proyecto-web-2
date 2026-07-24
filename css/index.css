@@ -1,0 +1,16 @@
+.hero {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+}
+.hero h2 { font-size: 3em; margin-bottom: 10px; }
+.hero p { font-size: 1.2em; margin-bottom: 30px; }
+.menu-destacado { padding: 50px 20px; text-align: center; max-width: 1000px; margin: 0 auto; }
+.menu-grid { display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 30px; gap: 20px; }
+.plato { background: #fff; width: 30%; min-width: 250px; margin-bottom: 20px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 8px; }
+.plato h3 { color: #d35400; }
+.precio { font-weight: bold; font-size: 1.2em; color: #27ae60; }
