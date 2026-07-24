@@ -1,0 +1,8 @@
+.nosotros-section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+.nosotros-contenido { display: flex; gap: 40px; align-items: center; }
+.nosotros-texto { flex: 1; }
+.nosotros-texto h2 { color: #d35400; font-size: 2.5em; }
+.nosotros-texto p { line-height: 1.6; font-size: 1.1em; margin-bottom: 15px; }
+.nosotros-imagen { flex: 1; }
+.nosotros-imagen img { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+@media (max-width: 768px) { .nosotros-contenido { flex-direction: column; } }
