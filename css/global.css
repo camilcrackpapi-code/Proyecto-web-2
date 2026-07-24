@@ -42,7 +42,7 @@ nav a:hover { color: #f97316; }
 }
 
 /* PIE DE PÁGINA GLOBAL */
-.site-footer { background: #3d2817; color: #f59e0b; padding: 50px 20px 20px; margin-top: 50px; }
+.site-footer { background: black; color: #f59e0b; padding: 50px 20px 20px; margin-top: 50px; }
 .footer-container { display: flex; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: 0 auto; }
 .footer-col { flex: 1; min-width: 200px; }
 .footer-col h4 { color: #f97316; margin: 0 0 20px; font-size: 1.1em; letter-spacing: 0.5px; }
