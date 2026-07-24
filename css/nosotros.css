@@ -1,18 +1,18 @@
 .nosotros-section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
 .nosotros-contenido { display: flex; gap: 40px; align-items: center; margin-bottom: 50px; }
 .nosotros-texto { flex: 1; }
-.nosotros-texto h2 { color: #052659; font-size: 2.5em; margin-bottom: 20px;}
-.nosotros-texto p { line-height: 1.6; font-size: 1.1em; margin-bottom: 15px; color: #1a1a1a; }
+.nosotros-texto h2 { color: #d97706; font-size: 2.5em; margin-bottom: 20px;}
+.nosotros-texto p { line-height: 1.6; font-size: 1.1em; margin-bottom: 15px; color: #3d2817; }
 .nosotros-imagen { flex: 1; }
-.nosotros-imagen img { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(2, 16, 36, 0.15); }
+.nosotros-imagen img { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(61, 40, 23, 0.15); }
 
 /* INPUT DE FECHA */
 #fecha {
     padding: 12px 15px;
     font-size: 1.05em;
-    border: 2px solid #052659;
+    border: 2px solid #d97706;
     border-radius: 8px;
-    color: #021024;
+    color: #3d2817;
     background-color: #ffffff;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -20,14 +20,14 @@
 }
 
 #fecha:hover {
-    border-color: #5483b3;
-    box-shadow: 0 4px 12px rgba(5, 38, 89, 0.2);
+    border-color: #f59e0b;
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
 }
 
 #fecha:focus {
     outline: none;
-    border-color: #052659;
-    box-shadow: 0 0 0 3px rgba(5, 38, 89, 0.1);
+    border-color: #d97706;
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
 }
 
 /* CONTENEDORES DE MISIÓN Y VISIÓN */
@@ -42,18 +42,18 @@
     background: #ffffff;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(2, 16, 36, 0.1);
-    border-top: 4px solid #052659;
+    box-shadow: 0 4px 15px rgba(61, 40, 23, 0.1);
+    border-top: 4px solid #d97706;
     text-align: center;
 }
 .mv-caja h3 {
-    color: #021024;
+    color: #3d2817;
     font-size: 1.8em;
     margin-top: 0;
     margin-bottom: 15px;
 }
 .mv-caja p {
-    color: #1a1a1a;
+    color: #3d2817;
     line-height: 1.6;
     font-size: 1.05em;
 }
