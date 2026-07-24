@@ -2,31 +2,31 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    color: #1a1a1a;
-    background-color: #f5f7fa;
+    color: #2a2a2a;
+    background-color: #f9f7f4;
 }
 header {
-    background-color: #021024;
+    background-color: #1a1a1a;
     padding: 20px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 header h1 {
     margin: 0;
-    color: #5483b3;
+    color: #d4a574;
 }
 nav a {
     margin-left: 20px;
     text-decoration: none;
-    color: #c1e8ff;
+    color: #e8b896;
     font-weight: bold;
 }
-nav a:hover { color: #7da0ca; }
+nav a:hover { color: #f4a460; }
 .btn {
-    background-color: #052659;
-    color: #c1e8ff;
+    background-color: #c67c4e;
+    color: #ffffff;
     padding: 15px 30px;
     text-decoration: none;
     font-size: 1.1em;
@@ -37,27 +37,27 @@ nav a:hover { color: #7da0ca; }
     transition: all 0.3s ease;
 }
 .btn:hover { 
-    background-color: #5483b3;
-    color: #ffffff;
+    background-color: #a0563d;
+    color: #fff9f5;
 }
 
 /* PIE DE PÁGINA GLOBAL */
-.site-footer { background: #021024; color: #7da0ca; padding: 50px 20px 20px; margin-top: 50px; }
+.site-footer { background: #1a1a1a; color: #d4a574; padding: 50px 20px 20px; margin-top: 50px; }
 .footer-container { display: flex; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: 0 auto; }
 .footer-col { flex: 1; min-width: 200px; }
-.footer-col h4 { color: #c1e8ff; margin: 0 0 20px; font-size: 1.1em; letter-spacing: 0.5px; }
+.footer-col h4 { color: #f4a460; margin: 0 0 20px; font-size: 1.1em; letter-spacing: 0.5px; }
 .footer-col p { line-height: 1.5; font-size: 0.9em; margin-bottom: 15px; }
 .footer-col ul { list-style: none; padding: 0; margin: 0; }
 .footer-col ul li { margin-bottom: 12px; font-size: 0.95em; }
-.footer-col ul li a { color: #7da0ca; text-decoration: none; transition: color 0.3s ease; }
-.footer-col ul li a:hover { color: #c1e8ff; }
+.footer-col ul li a { color: #d4a574; text-decoration: none; transition: color 0.3s ease; }
+.footer-col ul li a:hover { color: #f4a460; }
 .social-links { display: flex; gap: 10px; }
-.social-links a { display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; background: #052659; color: #c1e8ff; border-radius: 50%; text-decoration: none; font-weight: bold; transition: all 0.3s ease; }
-.social-links a:hover { transform: translateY(-3px); background: #5483b3; }
-.social-links a[title="Facebook"] { background: #1877f2; }
-.social-links a[title="X (Twitter)"] { background: #000; border: 1px solid #444; }
-.social-links a[title="Instagram"] { background: #e1306c; }
-.social-links a[title="WhatsApp"] { background: #25d366; }
-.footer-bottom { text-align: center; padding-top: 20px; margin-top: 40px; border-top: 1px solid #363a40; font-size: 0.85em; color: #7da0ca; }
+.social-links a { display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; background: #c67c4e; color: #ffffff; border-radius: 50%; text-decoration: none; font-weight: bold; transition: all 0.3s ease; }
+.social-links a:hover { transform: translateY(-3px); background: #f4a460; }
+.social-links a[title="Facebook"] { background: #d4843d; }
+.social-links a[title="X (Twitter)"] { background: #2a2a2a; border: 1px solid #5a5a5a; }
+.social-links a[title="Instagram"] { background: #e07856; }
+.social-links a[title="WhatsApp"] { background: #a0563d; }
+.footer-bottom { text-align: center; padding-top: 20px; margin-top: 40px; border-top: 1px solid #3a3a3a; font-size: 0.85em; color: #d4a574; }
 @media (max-width: 900px) { .footer-col { flex: 1 1 45%; } }
 @media (max-width: 600px) { .footer-col { flex: 1 1 100%; } }
