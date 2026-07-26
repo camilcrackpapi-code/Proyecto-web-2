@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Cocina - La Cocina Deliciosa</title>
+    <title>Panel de Cocina - Mivith</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #021024; color: #fff; margin: 0; padding: 0; display: flex; }
         
@@ -41,18 +41,17 @@
 </head>
 <body>
 
-    <!-- Verificación de Seguridad -->
+    <!-- Protección de acceso -->
     <script>
-        // Si no se ha autenticado mediante la pantalla anterior, redirige al inicio
         if (sessionStorage.getItem('adminAutenticado') !== 'true') {
-            alert("Acceso denegado. Debes iniciar sesión como administrador.");
+            alert("Acceso denegado. Debes ingresar la contraseña desde el inicio.");
             window.location.href = "index.html";
         }
     </script>
 
     <!-- Sidebar de Navegación -->
     <div class="sidebar">
-        <h2>Panel Admin</h2>
+        <h2>Mivith Admin</h2>
         <ul class="menu-lateral">
             <li class="activo">🔔 Órdenes Activas</li>
             <li>📊 Historial y Ventas</li>
@@ -72,13 +71,11 @@
     </div>
 
     <script>
-        // Array de órdenes con estado de completado
         let ordenesPendientes = [
             { id: 1, mesa: "5", cliente: "Carlos Pérez", hora: "14:30", completada: false, platos: [{nombre: "Hamburguesa Artesanal", cant: 2}, {nombre: "Limonada", cant: 2}] },
-            { id: 2, mesa: "2", cliente: "Ana Gómez", hora: "14:32", completada: false, platos: [{nombre: "Pasta Alfredo", cant: 1}] }
+            { id: 2, mesa: "2", cliente: "Ana Gómez", hora: "14:32", completada: false, platos: [{nombre: "Pasta Alfredo con Pollo", cant: 1}] }
         ];
 
-        // 1. Reloj en tiempo real
         function actualizarReloj() {
             const ahora = new Date();
             document.getElementById('reloj').innerText = ahora.toLocaleTimeString();
@@ -86,7 +83,6 @@
         setInterval(actualizarReloj, 1000);
         actualizarReloj();
 
-        // 2. Renderizado de comandas en pantalla
         function renderizarOrdenes() {
             const contenedor = document.getElementById('contenedorOrdenes');
             let acumuladoHTML = '';
@@ -118,7 +114,6 @@
             contenedor.innerHTML = acumuladoHTML;
         }
 
-        // 3. Permite despachar y descompletar
         function alternarEstadoOrden(id) {
             const orden = ordenesPendientes.find(o => o.id === id);
             if (orden) {
@@ -127,7 +122,6 @@
             }
         }
 
-        // 4. Cerrar sesión
         function cerrarSesion() {
             sessionStorage.removeItem('adminAutenticado');
             window.location.href = "index.html";
@@ -137,7 +131,6 @@
             renderizarOrdenes(); 
         }
 
-        // Iniciar
         renderizarOrdenes();
         setInterval(buscarNuevasOrdenes, 5000);
     </script>
