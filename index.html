@@ -92,7 +92,7 @@
         </div>
     </footer>
 
-    <!-- Redirección correcta a templates/admin.html -->
+    <!-- Lógica de validación con la ruta corregida a la carpeta templates -->
     <script>
         function ingresarAdmin(e) {
             e.preventDefault();
@@ -102,6 +102,7 @@
             
             if (password === CLAVE_CORRECTA) {
                 sessionStorage.setItem('adminAutenticado', 'true');
+                // Ruta corregida según tu árbol de archivos en GitHub
                 window.location.href = "templates/admin.html"; 
             } else if (password !== null) {
                 alert("⚠️ Contraseña incorrecta.");
