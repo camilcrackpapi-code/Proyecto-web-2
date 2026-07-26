@@ -3,136 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Cocina - Mivith</title>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #021024; color: #fff; margin: 0; padding: 0; display: flex; }
-        
-        /* Barra lateral */
-        .sidebar { width: 250px; background-color: #052659; min-height: 100vh; padding: 20px; box-sizing: border-box; }
-        .sidebar h2 { color: #c1e8ff; margin-top: 0; font-size: 1.5em; border-bottom: 1px solid #5483b3; padding-bottom: 15px; }
-        .menu-lateral { list-style: none; padding: 0; }
-        .menu-lateral li { padding: 15px 0; border-bottom: 1px solid #5483b3; cursor: pointer; color: #7da0ca; }
-        .menu-lateral li:hover, .menu-lateral li.activo { color: #c1e8ff; font-weight: bold; }
-
-        /* Área principal de pedidos */
-        .main-content { flex: 1; padding: 30px; }
-        .header-panel { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #5483b3; padding-bottom: 20px; margin-bottom: 30px; }
-        .reloj { font-size: 1.2em; color: #7da0ca; font-weight: bold; }
-
-        /* Grid de comandas */
-        .ordenes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        
-        /* Tarjeta de cada orden */
-        .orden-card { background: #ffffff; color: #021024; border-radius: 8px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); position: relative; border-top: 5px solid #c1e8ff; transition: all 0.3s ease; }
-        .orden-card.completada { border-top-color: #27ae60; opacity: 0.65; background-color: #f8f9fa; }
-        .mesa-tag { position: absolute; top: -15px; right: 20px; background: #052659; color: #c1e8ff; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 1.2em; }
-        .cliente-info { font-size: 0.9em; color: #7da0ca; margin-bottom: 15px; }
-        .lista-platos { list-style: none; padding: 0; margin: 0 0 20px 0; font-size: 1.1em; font-weight: bold; }
-        .lista-platos li { margin-bottom: 8px; border-bottom: 1px dashed #7da0ca; padding-bottom: 5px; display: flex; justify-content: space-between; }
-        
-        /* Botón dinámico */
-        .btn-despachar { width: 100%; background: #27ae60; color: white; border: none; padding: 12px; border-radius: 5px; font-size: 0.95em; font-weight: bold; cursor: pointer; transition: background 0.2s; }
-        .btn-despachar:hover { background: #219150; }
-        
-        /* Estilo visual cuando está completado */
-        .btn-despachar.btn-completado { background: #7f8c8d; }
-        .btn-despachar.btn-completado:hover { background: #e74c3c; }
-    </style>
+    <title>Inicio - Mivith</title>
+    <!-- CSS Separados -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 
-    <!-- Protección de acceso -->
-    <script>
-        if (sessionStorage.getItem('adminAutenticado') !== 'true') {
-            alert("Acceso denegado. Debes ingresar la contraseña desde el inicio.");
-            window.location.href = "index.html";
-        }
-    </script>
+    <header>
+        <h1>Mivith</h1>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="#" onclick="ingresarAdmin(event)">Admin</a>
+            <a href="templates/menu.html">Menú</a>
+            <a href="templates/nosotros.html">Nosotros</a>
+            <a href="templates/contacto.html">Contacto</a>
+        </nav>
+    </header>
 
-    <!-- Sidebar de Navegación -->
-    <div class="sidebar">
-        <h2>Mivith Admin</h2>
-        <ul class="menu-lateral">
-            <li class="activo">🔔 Órdenes Activas</li>
-            <li>📊 Historial y Ventas</li>
-            <li>⚙️ Configurar Menú</li>
-            <li onclick="cerrarSesion()">🚪 Cerrar Sesión</li>
-        </ul>
-    </div>
+    <section class="hero">
+        <h2>El verdadero sabor en tu mesa</h2>
+        <p>Ingredientes frescos y recetas tradicionales preparadas con amor.</p>
+        <a href="templates/contacto.html" class="btn">Reserva tu mesa</a>
+    </section>
 
-    <!-- Contenido Principal -->
-    <div class="main-content">
-        <div class="header-panel">
-            <h1>Monitor de Cocina (Comandas)</h1>
-            <div class="reloj" id="reloj">--:--:--</div>
+    <section id="menu" class="menu-destacado">
+        <h2>Platillos Estrella</h2>
+        <p>Conoce los favoritos de nuestros clientes</p>
+        
+        <div class="menu-grid">
+            <div class="plato">
+                <h3>Hamburguesa Artesanal</h3>
+                <p>Carne 100% de res, queso cheddar fundido, tocino crujiente y vegetales frescos.</p>
+                <p class="precio">$12.50</p>
+            </div>
+            <div class="plato">
+                <h3>Pasta Alfredo con Pollo</h3>
+                <p>Fettuccine bañados en nuestra salsa cremosa de la casa con trozos de pollo a la parrilla.</p>
+                <p class="precio">$14.00</p>
+            </div>
+            <div class="plato">
+                <h3>Ensalada César</h3>
+                <p>Lechuga romana fresca, crutones, queso parmesano y el aderezo tradicional.</p>
+                <p class="precio">$9.00</p>
+            </div>
         </div>
+    </section>
 
-        <div class="ordenes-grid" id="contenedorOrdenes"></div>
-    </div>
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>MIVITH</h4>
+                <p>El mejor sabor en tu mesa. Comprometidos con la calidad en cada platillo.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="X (Twitter)">𝕏</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="WhatsApp">💬</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>NAVEGACIÓN</h4>
+                <ul>
+                    <li><a href="index.html">› Inicio</a></li>
+                    <li><a href="templates/nosotros.html">› Nosotros</a></li>
+                    <li><a href="templates/contacto.html">› Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>CONTACTO</h4>
+                <ul>
+                    <li>📍 Transv 15 38b 22.</li>
+                    <li>📞 +57 3214567895</li>
+                    <li>🕒 Lun-Dom: 12pm - 10pm</li>
+                    <li>📨 MivithYopal@gmail.com </li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>PAGOS</h4>
+                <p>Medios de pago aceptados:</p>
+                <div style="font-size: 1.1em; margin-top: 10px;">
+                    💵 Efectivo &nbsp;&nbsp;|&nbsp;&nbsp; 📱 Nequi
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Mivith.</p>
+        </div>
+    </footer>
 
+    <!-- Lógica de validación con la ruta corregida a la carpeta templates -->
     <script>
-        let ordenesPendientes = [
-            { id: 1, mesa: "5", cliente: "Carlos Pérez", hora: "14:30", completada: false, platos: [{nombre: "Hamburguesa Artesanal", cant: 2}, {nombre: "Limonada", cant: 2}] },
-            { id: 2, mesa: "2", cliente: "Ana Gómez", hora: "14:32", completada: false, platos: [{nombre: "Pasta Alfredo con Pollo", cant: 1}] }
-        ];
-
-        function actualizarReloj() {
-            const ahora = new Date();
-            document.getElementById('reloj').innerText = ahora.toLocaleTimeString();
-        }
-        setInterval(actualizarReloj, 1000);
-        actualizarReloj();
-
-        function renderizarOrdenes() {
-            const contenedor = document.getElementById('contenedorOrdenes');
-            let acumuladoHTML = '';
-
-            ordenesPendientes.forEach(orden => {
-                let itemsHTML = '';
-                orden.platos.forEach(p => {
-                    itemsHTML += `<li><span>${p.cant}x ${p.nombre}</span></li>`;
-                });
-
-                const estaCompletada = orden.completada;
-
-                acumuladoHTML += `
-                    <div class="orden-card ${estaCompletada ? 'completada' : ''}" id="orden-${orden.id}">
-                        <div class="mesa-tag">Mesa ${orden.mesa}</div>
-                        <h3 style="margin-top: 0;">Orden #${orden.id}</h3>
-                        <div class="cliente-info">👤 ${orden.cliente} | 🕒 ${orden.hora}</div>
-                        <ul class="lista-platos">
-                            ${itemsHTML}
-                        </ul>
-                        <button class="btn-despachar ${estaCompletada ? 'btn-completado' : ''}" 
-                                onclick="alternarEstadoOrden(${orden.id})">
-                            ${estaCompletada ? '✓ Completado (Haz clic para deshacer)' : 'Despachar Pedido ✓'}
-                        </button>
-                    </div>
-                `;
-            });
-
-            contenedor.innerHTML = acumuladoHTML;
-        }
-
-        function alternarEstadoOrden(id) {
-            const orden = ordenesPendientes.find(o => o.id === id);
-            if (orden) {
-                orden.completada = !orden.completada;
-                renderizarOrdenes(); 
+        function ingresarAdmin(e) {
+            e.preventDefault();
+            const CLAVE_CORRECTA = "1234";
+            
+            const password = prompt("Ingrese la contraseña de Administrador:");
+            
+            if (password === CLAVE_CORRECTA) {
+                sessionStorage.setItem('adminAutenticado', 'true');
+                // Ruta corregida según tu árbol de archivos en GitHub
+                window.location.href = "templates/admin.html"; 
+            } else if (password !== null) {
+                alert("⚠️ Contraseña incorrecta.");
             }
         }
-
-        function cerrarSesion() {
-            sessionStorage.removeItem('adminAutenticado');
-            window.location.href = "index.html";
-        }
-
-        function buscarNuevasOrdenes() {
-            renderizarOrdenes(); 
-        }
-
-        renderizarOrdenes();
-        setInterval(buscarNuevasOrdenes, 5000);
     </script>
+
 </body>
 </html>
