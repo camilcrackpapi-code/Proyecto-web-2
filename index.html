@@ -14,6 +14,7 @@
         <h1>Mivith</h1>
         <nav>
             <a href="index.html">Inicio</a>
+            <a href="#" onclick="ingresarAdmin(event)">Admin</a>
             <a href="templates/menu.html">Menú</a>
             <a href="templates/nosotros.html">Nosotros</a>
             <a href="templates/contacto.html">Contacto</a>
@@ -90,6 +91,23 @@
             <p>&copy; 2026 Mivith.</p>
         </div>
     </footer>
+
+    <!-- Lógica de validación para el botón Admin -->
+    <script>
+        function ingresarAdmin(e) {
+            e.preventDefault(); // Evita recargar la página al hacer clic
+            const CLAVE_CORRECTA = "1234";
+            
+            const password = prompt("Ingrese la contraseña de Administrador:");
+            
+            if (password === CLAVE_CORRECTA) {
+                sessionStorage.setItem('adminAutenticado', 'true');
+                window.location.href = "cocina.html"; // Redirige al panel de cocina
+            } else if (password !== null) {
+                alert("⚠️ Contraseña incorrecta.");
+            }
+        }
+    </script>
 
 </body>
 </html>
