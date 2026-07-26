@@ -92,17 +92,17 @@
         </div>
     </footer>
 
-    <!-- Lógica de validación para el botón Admin -->
+    <!-- Redirección correcta a templates/admin.html -->
     <script>
         function ingresarAdmin(e) {
-            e.preventDefault(); // Evita recargar la página al hacer clic
+            e.preventDefault();
             const CLAVE_CORRECTA = "1234";
             
             const password = prompt("Ingrese la contraseña de Administrador:");
             
             if (password === CLAVE_CORRECTA) {
                 sessionStorage.setItem('adminAutenticado', 'true');
-                window.location.href = "cocina.html"; // Redirige al panel de cocina
+                window.location.href = "templates/admin.html"; 
             } else if (password !== null) {
                 alert("⚠️ Contraseña incorrecta.");
             }
