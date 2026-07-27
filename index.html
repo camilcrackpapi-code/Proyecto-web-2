@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio - Mivith</title>
-    <!-- CSS Separados -->
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
@@ -14,7 +13,6 @@
         <h1>Mivith</h1>
         <nav>
             <a href="index.html">Inicio</a>
-            <a href="#" onclick="ingresarAdmin(event)">Admin</a>
             <a href="templates/menu.html">Menú</a>
             <a href="templates/nosotros.html">Nosotros</a>
             <a href="templates/contacto.html">Contacto</a>
@@ -22,31 +20,34 @@
     </header>
 
     <section class="hero">
-        <h2>El verdadero sabor en tu mesa</h2>
-        <p>Ingredientes frescos y recetas tradicionales preparadas con amor.</p>
-        <a href="templates/contacto.html" class="btn">Reserva tu mesa</a>
+        <h2>Comida rápida de excelente calidad</h2>
+        <p>Preparada con ingredientes frescos y mucho sabor. Un lugar donde cada bocado es una experiencia memorable.</p>
+        <a href="templates/contacto.html" class="btn">Reservar Mesa</a>
     </section>
 
     <section id="menu" class="menu-destacado">
-        <h2>Platillos Estrella</h2>
-        <p>Conoce los favoritos de nuestros clientes</p>
+        <h2>Nuestros Favoritos</h2>
+        <p>Conoce los platillos preferidos de la región</p>
         
         <div class="menu-grid">
             <div class="plato">
-                <h3>Hamburguesa Artesanal</h3>
-                <p>Carne 100% de res, queso cheddar fundido, tocino crujiente y vegetales frescos.</p>
-                <p class="precio">$12.50</p>
+                <h3>Hamburguesa Clásica</h3>
+                <p>La favorita de siempre. Carne jugosa, lechuga fresca, tomate y nuestra salsa especial.</p>
+                <p class="precio">$18.000 COP</p>
             </div>
             <div class="plato">
-                <h3>Pasta Alfredo con Pollo</h3>
-                <p>Fettuccine bañados en nuestra salsa cremosa de la casa con trozos de pollo a la parrilla.</p>
-                <p class="precio">$14.00</p>
+                <h3>Perro Especial</h3>
+                <p>Salchicha de primera calidad con queso fundido, tocino crujiente y nuestra salsa especial.</p>
+                <p class="precio">$16.000 COP</p>
             </div>
             <div class="plato">
-                <h3>Ensalada César</h3>
-                <p>Lechuga romana fresca, crutones, queso parmesano y el aderezo tradicional.</p>
-                <p class="precio">$9.00</p>
+                <h3>Salchipapa Mixta</h3>
+                <p>La más completa: salchicha, carne, queso, huevo y todos los acompañamientos.</p>
+                <p class="precio">$24.000 COP</p>
             </div>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="templates/menu.html" class="btn">Ver Menú Completo</a>
         </div>
     </section>
 
@@ -54,18 +55,13 @@
         <div class="footer-container">
             <div class="footer-col">
                 <h4>MIVITH</h4>
-                <p>El mejor sabor en tu mesa. Comprometidos con la calidad en cada platillo.</p>
-                <div class="social-links">
-                    <a href="#" title="Facebook">f</a>
-                    <a href="#" title="X (Twitter)">𝕏</a>
-                    <a href="#" title="Instagram">📷</a>
-                    <a href="#" title="WhatsApp">💬</a>
-                </div>
+                <p>Calidad premium a precios accesibles. Tu seguridad y satisfacción son nuestra prioridad.</p>
             </div>
             <div class="footer-col">
                 <h4>NAVEGACIÓN</h4>
                 <ul>
                     <li><a href="index.html">› Inicio</a></li>
+                    <li><a href="templates/menu.html">› Menú</a></li>
                     <li><a href="templates/nosotros.html">› Nosotros</a></li>
                     <li><a href="templates/contacto.html">› Contacto</a></li>
                 </ul>
@@ -73,42 +69,17 @@
             <div class="footer-col">
                 <h4>CONTACTO</h4>
                 <ul>
-                    <li>📍 Transv 15 38b 22.</li>
-                    <li>📞 +57 3214567895</li>
-                    <li>🕒 Lun-Dom: 12pm - 10pm</li>
-                    <li>📨 MivithYopal@gmail.com </li>
+                    <li>📍 Transv 15 38b 22</li>
+                    <li>📞 3017302822 - 3214567895</li>
+                    <li>🕒 Lun-Dom: 10:00 am - 1:00 am</li>
+                    <li>📨 mivithYopal@gmail.com </li>
                 </ul>
-            </div>
-            <div class="footer-col">
-                <h4>PAGOS</h4>
-                <p>Medios de pago aceptados:</p>
-                <div style="font-size: 1.1em; margin-top: 10px;">
-                    💵 Efectivo &nbsp;&nbsp;|&nbsp;&nbsp; 📱 Nequi
-                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Mivith.</p>
+            <p>&copy; 2026 Restaurante Mivith.</p>
         </div>
     </footer>
-
-    <!-- Lógica de validación con la ruta corregida a la carpeta templates -->
-    <script>
-        function ingresarAdmin(e) {
-            e.preventDefault();
-            const CLAVE_CORRECTA = "1234";
-            
-            const password = prompt("Ingrese la contraseña de Administrador:");
-            
-            if (password === CLAVE_CORRECTA) {
-                sessionStorage.setItem('adminAutenticado', 'true');
-                // Ruta corregida según tu árbol de archivos en GitHub
-                window.location.href = "templates/admin.html"; 
-            } else if (password !== null) {
-                alert("⚠️ Contraseña incorrecta.");
-            }
-        }
-    </script>
 
 </body>
 </html>
