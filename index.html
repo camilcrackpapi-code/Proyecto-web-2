@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Mivith</title>
+    <title>Mivith - Inicio</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
@@ -13,41 +13,67 @@
         <h1>Mivith</h1>
         <nav>
             <a href="index.html">Inicio</a>
-            <a href="templates/menu.html">Menú</a>
-            <a href="templates/nosotros.html">Nosotros</a>
-            <a href="templates/contacto.html">Contacto</a>
+            <a href="html/menu.html">Menú</a>
+            <a href="html/nosotros.html">Nosotros</a>
+            <a href="html/contacto.html">Contacto</a>
         </nav>
     </header>
 
     <section class="hero">
-        <h2>Comida rápida de excelente calidad</h2>
-        <p>Preparada con ingredientes frescos y mucho sabor. Un lugar donde cada bocado es una experiencia memorable.</p>
-        <a href="templates/contacto.html" class="btn">Reservar Mesa</a>
+        <div class="hero-content">
+            <h2>El mejor sabor urbano</h2>
+            <p>Hamburguesas, salchipapas y perros calientes como te gustan.</p>
+            <a href="html/menu.html" class="btn-principal">Ver Carta Completa</a>
+        </div>
     </section>
 
-    <section id="menu" class="menu-destacado">
-        <h2>Nuestros Favoritos</h2>
-        <p>Conoce los platillos preferidos de la región</p>
+    <!-- SECCIÓN DE COMBOS REEMPLAZANDO LOS FAVORITOS -->
+    <section id="combos" class="combos-destacados">
+        <h2>Combos para Compartir</h2>
+        <p>Ahorra y disfruta al máximo con nuestras opciones armadas para ti.</p>
         
-        <div class="menu-grid">
-            <div class="plato">
-                <h3>Hamburguesa Clásica</h3>
-                <p>La favorita de siempre. Carne jugosa, lechuga fresca, tomate y nuestra salsa especial.</p>
-                <p class="precio">$18.000 COP</p>
+        <div class="combos-grid">
+            
+            <!-- COMBO 1 -->
+            <div class="combo-card">
+                <img src="https://images.unsplash.com/photo-1594212202941-69234857c0e9?auto=format&fit=crop&w=800&q=80" alt="Combo 1">
+                <div class="combo-info">
+                    <h3>COMBO 1</h3>
+                    <p>4 Hamburguesas Clásicas<br>Gaseosa 1.5L</p>
+                    <span class="combo-precio">$65.000</span>
+                </div>
             </div>
-            <div class="plato">
-                <h3>Perro Especial</h3>
-                <p>Salchicha de primera calidad con queso fundido, tocino crujiente y nuestra salsa especial.</p>
-                <p class="precio">$16.000 COP</p>
+
+            <!-- COMBO 2 -->
+            <div class="combo-card">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80" alt="Combo 2">
+                <div class="combo-info">
+                    <h3>COMBO 2</h3>
+                    <p>2 Hamburguesas Clásicas<br>2 Papas + Gaseosa 1L</p>
+                    <span class="combo-precio">$45.000</span>
+                </div>
             </div>
-            <div class="plato">
-                <h3>Salchipapa Mixta</h3>
-                <p>La más completa: salchicha, carne, queso, huevo y todos los acompañamientos.</p>
-                <p class="precio">$24.000 COP</p>
+
+            <!-- COMBO 3 -->
+            <div class="combo-card">
+                <img src="https://images.unsplash.com/photo-1605040683050-717013ba0d6b?auto=format&fit=crop&w=800&q=80" alt="Combo 3">
+                <div class="combo-info">
+                    <h3>COMBO 3</h3>
+                    <p>1 Hamburguesa Especial<br>1 Perro Clásico<br>2 Papas + Gaseosa 1L</p>
+                    <span class="combo-precio">$35.000</span>
+                </div>
             </div>
-        </div>
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="templates/menu.html" class="btn">Ver Menú Completo</a>
+
+            <!-- COMBO 4 -->
+            <div class="combo-card">
+                <img src="https://images.unsplash.com/photo-1610440042657-612c34d95e9f?auto=format&fit=crop&w=800&q=80" alt="Combo 4">
+                <div class="combo-info">
+                    <h3>COMBO 4</h3>
+                    <p>2 Hamburguesas<br>2 Perros Especiales<br>2 Papas + Gaseosa 1.5L</p>
+                    <span class="combo-precio">$68.000</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -61,9 +87,9 @@
                 <h4>NAVEGACIÓN</h4>
                 <ul>
                     <li><a href="index.html">› Inicio</a></li>
-                    <li><a href="templates/menu.html">› Menú</a></li>
-                    <li><a href="templates/nosotros.html">› Nosotros</a></li>
-                    <li><a href="templates/contacto.html">› Contacto</a></li>
+                    <li><a href="html/menu.html">› Menú</a></li>
+                    <li><a href="html/nosotros.html">› Nosotros</a></li>
+                    <li><a href="html/contacto.html">› Contacto</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -80,6 +106,5 @@
             <p>&copy; 2026 Restaurante Mivith.</p>
         </div>
     </footer>
-
 </body>
 </html>
