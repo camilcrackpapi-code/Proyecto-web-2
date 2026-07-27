@@ -17,10 +17,10 @@
     margin: 0 auto; 
 }
 
-/* AQUÍ ESTÁ EL TRUCO PARA EL 2X2 */
+/* cuadricula*/
 .menu-grid { 
     display: grid; 
-    grid-template-columns: repeat(2, 1fr); /* Crea 2 columnas exactamente iguales */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 25px; 
     margin-top: 30px; 
 }
@@ -31,23 +31,25 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
     border-radius: 8px; 
     text-align: center;
-    border-top: 4px solid #d35400; /* Un detalle naranja arriba para que se vea premium */
+    border-top: 4px solid #d35400; 
 }
 
-/* Estilo para que las fotos de los combos queden bien cuadraditas */
+/* fotos cuadricula */
 .img-combo {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 15px;
+    width: 60%; 
+    max-width: 160px; 
+    height: 130px; 
+    object-fit: cover; 
+    border-radius: 8px; 
+    margin: 0 auto 15px auto; 
+    display: block; 
 }
 
 .plato h3 { color: #d35400; margin-bottom: 10px;}
 .plato p { margin-bottom: 10px; color: #555; }
 .precio { font-weight: bold; font-size: 1.2em; color: #27ae60; }
 
-/* Para que en celulares se vea 1 debajo del otro y no aplastado */
+
 @media (max-width: 768px) {
     .menu-grid {
         grid-template-columns: 1fr;
