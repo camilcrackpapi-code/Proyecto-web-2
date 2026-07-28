@@ -1,51 +1,72 @@
-/* Estructura general de la carta */
+/* Estilo Temático: Cafesita con Líneas */
+
+/* Base y Fondo */
+body {
+    background-color: #fdfbf7;
+    color: #4e342e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .seccion-carta {
     padding: 40px 20px;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
+    border: 2px solid #d7ccc8;
+    background: #ffffff;
 }
 
 .seccion-carta h2 {
     text-align: center;
-    color: #052659;
-    margin-bottom: 10px;
+    color: #5d4037;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #5d4037;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 10px;
 }
 
 .instruccion-scroll {
     text-align: center;
-    color: #666;
+    color: #8d6e63;
     font-size: 0.9rem;
     margin-bottom: 30px;
+    font-style: italic;
 }
 
-/* Contenedor que permite el scroll horizontal */
+/* Contenedor Horizontal */
 .contenedor-horizontal {
     display: flex;
-    gap: 25px;
+    gap: 30px;
     overflow-x: auto;
     padding-bottom: 20px;
-    scrollbar-width: thin; /* Para Firefox */
+    border-top: 1px dashed #d7ccc8;
+    padding-top: 20px;
 }
 
-/* Estilo para cada columna de categoría */
+/* Columnas tipo tarjeta con borde */
 .columna-carta {
-    min-width: 300px;
-    background: #f9f9f9;
+    min-width: 320px;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid #d7ccc8;
+    border-radius: 5px;
+    background: #fffaf0; /* Color crema suave */
 }
 
 .titulo-categoria {
-    color: #052659;
-    border-bottom: 2px solid #052659;
-    padding-bottom: 10px;
+    color: #5d4037;
+    border-bottom: 1px solid #5d4037;
+    padding-bottom: 8px;
     margin-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
 }
 
-/* Estilos de los ítems de la carta */
+/* Items con líneas separadoras */
 .item-carta {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    border-bottom: 1px dotted #d7ccc8;
+    padding-bottom: 10px;
 }
 
 .item-header {
@@ -57,18 +78,18 @@
 
 .item-header h4 {
     margin: 0;
-    color: #333;
+    color: #3e2723;
 }
 
 .item-precio {
     font-weight: bold;
-    color: #27ae60;
+    color: #8d6e63;
 }
 
 .item-desc {
     margin: 0;
-    font-size: 0.9rem;
-    color: #666;
+    font-size: 0.85rem;
+    color: #6d4c41;
     line-height: 1.4;
 }
 
