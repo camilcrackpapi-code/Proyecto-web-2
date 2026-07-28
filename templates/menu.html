@@ -1,177 +1,101 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Carta - Mivith</title>
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/menu.css">
-</head>
-<body>
+/* Estilo Temático: Cafesita con Líneas */
 
-    <header>
-        <h1>Mivith</h1>
-        <nav>
-            <a href="../index.html">Inicio</a>
-            <a href="menu.html">Menú</a>
-            <a href="nosotros.html">Nosotros</a>
-            <a href="contacto.html">Contacto</a>
-        </nav>
-    </header>
+/* Base y Fondo */
+body {
+    background-color: #fdfbf7;
+    color: #4e342e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-    <section class="seccion-carta">
-        <h2>Nuestro Menú</h2>
-        <p class="instruccion-scroll">↔ Desliza hacia los lados para ver todas nuestras categorías</p>
-        
-        <div class="contenedor-horizontal">
-            
-            <!-- HAMBURGUESAS -->
-            <div class="columna-carta">
-                <h3 class="titulo-categoria">Hamburguesas</h3>
-                <div class="item-carta">
-                    <div class="item-header">
-                        <h4>Clásica</h4>
-                        <span class="item-precio">$18.000</span>
-                    </div>
-                    <p class="item-desc">Carne jugosa, lechuga fresca, tomate y nuestra salsa especial.</p>
-                </div>
-                <div class="item-carta">
-                    <div class="item-header">
-                        <h4>BBQ</h4>
-                        <span class="item-precio">$22.000</span>
-                    </div>
-                    <p class="item-desc">Bañada en nuestra salsa BBQ casera con cebolla caramelizada.</p>
-                </div>
-                <div class="item-carta">
-                    <div class="item-header">
-                        <h4>Doble Carne</h4>
-                        <span class="item-precio">$26.000</span>
-                    </div>
-                    <p class="item-desc">Doble de sabor, doble de satisfacción. Dos carnes jugosas con queso fundido.</p>
-                </div>
-            </div>
+.seccion-carta {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 2px solid #d7ccc8;
+    background: #ffffff;
+}
 
-            <!-- PERROS CALIENTES Y SALCHIPAPAS -->
-            <div class="columna-carta">
-                <h3 class="titulo-categoria">Perros & Salchipapas</h3>
-                <div class="item-carta">
-                    <div class="item-header">
-                        <h4>Perro Especial</h4>
-                        <span class="item-precio">$16.000</span>
-                    </div>
-                    <p class="item-desc">Con queso fundido, tocino crujiente y nuestra salsa especial.</p>
-                </div>
-                <div class="item-carta">
-                    <div class="item-header">
-                        <h4>Perro Ranchero</h4>
-                        <span class="item-precio">$18.000</span>
-                    </div>
-                    <p class="item-desc">Huevo, champiñones y queso derretido</p>
-                </div>
-                <div class="item-carta">
-                    <div class="item-header">
-                        <h4>Salchipapa Mixta</h4>
-                        <span class="item-precio">$24.000</span>
-                    </div>
-                    <p class="item-desc">La más completa: salchicha, carne, queso, huevo y acompañamientos.</p>
-                </div>
-            </div>
+.seccion-carta h2 {
+    text-align: center;
+    color: #5d4037;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #5d4037;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 10px;
+}
 
-            <!-- POSTRES -->
-            <div class="columna-carta">
-                <h3 class="titulo-categoria">Postres</h3>
-                <div class="item-carta">
-                    <div class="item-header">
-                        <h4>Brownie con Helado</h4>
-                        <span class="item-precio">$12.000</span>
-                    </div>
-                    <p class="item-desc">Brownie tibio con helado de vainilla artesanal.</p>
-                </div>
-                <div class="item-carta">
-                    <div class="item-header">
-                        <h4>Cheesecake</h4>
-                        <span class="item-precio">$12.000</span>
-                    </div>
-                    <p class="item-desc">Cremoso, suave y con un toque de limón. Receta casera.</p>
-                </div>
-            </div>
+.instruccion-scroll {
+    text-align: center;
+    color: #8d6e63;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    font-style: italic;
+}
 
-            <!-- BEBIDAS -->
-            <div class="columna-carta">
-                <h3 class="titulo-categoria">Bebidas</h3>
-                <div class="item-carta">
-                    <div class="item-header">
-                        <h4>Limonada de Coco</h4>
-                        <span class="item-precio">$10.000</span>
-                    </div>
-                    <p class="item-desc">Nuestra especialidad. Cremosa, refrescante y única en Mivith.</p>
-                </div>
-            </div>
+/* Contenedor Horizontal */
+.contenedor-horizontal {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    border-top: 1px dashed #d7ccc8;
+    padding-top: 20px;
+}
 
-            <!-- COMBOS -->
-            <div class="columna-carta">
-                <h3 class="titulo-categoria" style="color: #f1c40f;">Promociones</h3>
-                <div class="item-carta">
-                    <div class="item-header">
-                        <h4>Combo 1</h4>
-                        <span class="item-precio">$65.000</span>
-                    </div>
-                    <p class="item-desc">4 Hamburguesas Clásicas + Gaseosa 1.5L.</p>
-                </div>
-                <div class="item-carta">
-                    <div class="item-header">
-                        <h4>Combo 2</h4>
-                        <span class="item-precio">$45.000</span>
-                    </div>
-                    <p class="item-desc">2 Hamburguesas Clásicas + 2 Papas + Gaseosa 1L.</p>
-                </div>
-                <div class="item-carta">
-                    <div class="item-header">
-                        <h4>Combo 3</h4>
-                        <span class="item-precio">$35.000</span>
-                    </div>
-                    <p class="item-desc">1 Hamburguesa Especial + 1 Perro Clásico + 2 Papas + Gaseosa 1L.</p>
-                </div>
-                <div class="item-carta">
-                    <div class="item-header">
-                        <h4>Combo 4</h4>
-                        <span class="item-precio">$68.000</span>
-                    </div>
-                    <p class="item-desc">2 Hamburguesas + 2 Perros Especiales + 2 Papas + Gaseosa 1.5L.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+/* Columnas tipo tarjeta con borde */
+.columna-carta {
+    min-width: 320px;
+    padding: 20px;
+    border: 1px solid #d7ccc8;
+    border-radius: 5px;
+    background: #fffaf0; /* Color crema suave */
+}
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>MIVITH</h4>
-                <p>Calidad premium a precios accesibles. Tu seguridad y satisfacción son nuestra prioridad.</p>
-            </div>
-            <div class="footer-col">
-                <h4>NAVEGACIÓN</h4>
-                <ul>
-                    <li><a href="../index.html">› Inicio</a></li>
-                    <li><a href="menu.html">› Menú</a></li>
-                    <li><a href="nosotros.html">› Nosotros</a></li>
-                    <li><a href="contacto.html">› Contacto</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>CONTACTO</h4>
-                <ul>
-                    <li>📍 Transv 15 38b 22</li>
-                    <li>📞 3017302822 - 3214567895</li>
-                    <li>🕒 Lun-Dom: 10:00 am - 1:00 am</li>
-                    <li>📨 mivithYopal@gmail.com </li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Restaurante Mivith.</p>
-        </div>
-    </footer>
-    
-</body>
-</html>
+.titulo-categoria {
+    color: #5d4037;
+    border-bottom: 1px solid #5d4037;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+/* Items con líneas separadoras */
+.item-carta {
+    margin-bottom: 15px;
+    border-bottom: 1px dotted #d7ccc8;
+    padding-bottom: 10px;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+
+.item-header h4 {
+    margin: 0;
+    color: #3e2723;
+}
+
+.item-precio {
+    font-weight: bold;
+    color: #8d6e63;
+}
+
+.item-desc {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #6d4c41;
+    line-height: 1.4;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 600px) {
+    .columna-carta {
+        min-width: 260px;
+    }
+}
