@@ -13,6 +13,7 @@
         <h1>Mivith</h1>
         <nav>
             <a href="index.html">Inicio</a>
+            <a href="#" onclick="ingresarAdmin(event)">Admin</a>
             <a href="templates/menu.html">Menú</a>
             <a href="templates/nosotros.html">Nosotros</a>
             <a href="templates/contacto.html">Contacto</a>
@@ -95,6 +96,23 @@
             <p>&copy; 2026 Restaurante Mivith.</p>
         </div>
     </footer>
+
+    <!-- Lógica del botón Admin -->
+    <script>
+        function ingresarAdmin(e) {
+            e.preventDefault();
+            const CLAVE_CORRECTA = "1234";
+            
+            const password = prompt("Ingrese la contraseña de Administrador:");
+            
+            if (password === CLAVE_CORRECTA) {
+                sessionStorage.setItem('adminAutenticado', 'true');
+                window.location.href = "templates/admin.html"; 
+            } else if (password !== null) {
+                alert("⚠️ Contraseña incorrecta.");
+            }
+        }
+    </script>
 
 </body>
 </html>
