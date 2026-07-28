@@ -1,11 +1,9 @@
-/* Contenedor principal del menú */
 .columna-carta {
     max-height: 520px;
     overflow-y: auto;
     padding-right: 5px;
 }
 
-/* Botón de agregar al carrito */
 .btn-add {
     background-color: #27ae60;
     color: #ffffff;
@@ -21,7 +19,6 @@
 }
 .btn-add:hover { background-color: #219150; }
 
-/* Botón flotante del carrito en la esquina */
 .cart-float-btn {
     position: fixed;
     bottom: 25px;
@@ -40,7 +37,6 @@
     gap: 8px;
 }
 
-/* Panel lateral derecho (Carrito) */
 .cart-sidebar {
     position: fixed;
     top: 0;
@@ -105,7 +101,6 @@
     padding-top: 15px;
 }
 
-/* Botón de enviar pedido */
 .btn-submit-order {
     width: 100%;
     background: #27ae60;
