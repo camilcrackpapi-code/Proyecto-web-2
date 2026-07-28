@@ -21,24 +21,33 @@
         
         .orden-card { background: #ffffff; color: #021024; border-radius: 8px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); position: relative; border-top: 5px solid #c1e8ff; transition: all 0.3s ease; }
         .orden-card.completada { border-top-color: #27ae60; opacity: 0.65; background-color: #f8f9fa; }
-        .mesa-tag { position: absolute; top: -15px; right: 20px; background: #052659; color: #c1e8ff; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 1.2em; }
-        .cliente-info { font-size: 0.9em; color: #7da0ca; margin-bottom: 15px; }
-        .lista-platos { list-style: none; padding: 0; margin: 0 0 20px 0; font-size: 1.1em; font-weight: bold; }
+        .cliente-tag { position: absolute; top: -15px; right: 20px; background: #052659; color: #c1e8ff; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9em; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .cliente-info { font-size: 0.9em; color: #5483b3; margin-bottom: 15px; font-weight: bold; }
+        .lista-platos { list-style: none; padding: 0; margin: 0 0 15px 0; font-size: 1em; font-weight: bold; }
         .lista-platos li { margin-bottom: 8px; border-bottom: 1px dashed #7da0ca; padding-bottom: 5px; display: flex; justify-content: space-between; }
         
-        .btn-despachar { width: 100%; background: #27ae60; color: white; border: none; padding: 12px; border-radius: 5px; font-size: 0.95em; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+        .total-pedido { font-size: 1.1em; color: #27ae60; font-weight: bold; margin-bottom: 15px; text-align: right; }
+
+        .btn-despachar { width: 100%; background: #27ae60; color: white; border: none; padding: 10px; border-radius: 5px; font-size: 0.95em; font-weight: bold; cursor: pointer; transition: background 0.2s; margin-bottom: 5px; }
         .btn-despachar:hover { background: #219150; }
         
         .btn-despachar.btn-completado { background: #7f8c8d; }
         .btn-despachar.btn-completado:hover { background: #e74c3c; }
+
+        .btn-eliminar { width: 100%; background: #e74c3c; color: white; border: none; padding: 6px; border-radius: 5px; font-size: 0.85em; font-weight: bold; cursor: pointer; opacity: 0.8; }
+        .btn-eliminar:hover { opacity: 1; }
+
+        .btn-limpiar-todo { background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn-limpiar-todo:hover { background: #c0392b; }
     </style>
 </head>
 <body>
 
     <script>
+        // Verificación de Autenticación
         if (sessionStorage.getItem('adminAutenticado') !== 'true') {
             alert("Acceso denegado. Debes ingresar la contraseña desde el inicio.");
-            window.location.href = "index.html";
+            window.location.href = "../index.html";
         }
     </script>
 
@@ -46,26 +55,28 @@
         <h2>Mivith Admin</h2>
         <ul class="menu-lateral">
             <li class="activo">🔔 Órdenes Activas</li>
-            <li>📊 Historial y Ventas</li>
-            <li>⚙️ Configurar Menú</li>
             <li onclick="cerrarSesion()">🚪 Cerrar Sesión</li>
         </ul>
     </div>
 
     <div class="main-content">
         <div class="header-panel">
-            <h1>Monitor de Cocina (Comandas)</h1>
-            <div class="reloj" id="reloj">--:--:--</div>
+            <div>
+                <h1 style="margin: 0;">Monitor de Cocina (Comandas)</h1>
+                <p style="margin: 5px 0 0 0; color: #7da0ca;">Pedidos recibidos desde el menú web</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <button class="btn-limpiar-todo" onclick="limpiarTodosLosPedidos()">🗑️ Borrar Historial</button>
+                <div class="reloj" id="reloj">--:--:--</div>
+            </div>
         </div>
 
         <div class="ordenes-grid" id="contenedorOrdenes"></div>
     </div>
 
     <script>
-        let ordenesPendientes = [
-            { id: 1, mesa: "5", cliente: "Carlos Pérez", hora: "14:30", completada: false, platos: [{nombre: "Hamburguesa Artesanal", cant: 2}, {nombre: "Limonada", cant: 2}] },
-            { id: 2, mesa: "2", cliente: "Ana Gómez", hora: "14:32", completada: false, platos: [{nombre: "Pasta Alfredo con Pollo", cant: 1}] }
-        ];
+        // Cargar pedidos almacenados localmente o iniciar array vacío
+        let ordenesPendientes = JSON.parse(localStorage.getItem('pedidosMivith')) || [];
 
         function actualizarReloj() {
             const ahora = new Date();
@@ -76,28 +87,46 @@
 
         function renderizarOrdenes() {
             const contenedor = document.getElementById('contenedorOrdenes');
+            
+            if (ordenesPendientes.length === 0) {
+                contenedor.innerHTML = '<h3 style="color: #7da0ca; grid-column: 1/-1; text-align: center;">No hay pedidos registrados en este momento.</h3>';
+                return;
+            }
+
             let acumuladoHTML = '';
 
-            ordenesPendientes.forEach(orden => {
+            ordenesPendientes.forEach((orden, index) => {
                 let itemsHTML = '';
-                orden.platos.forEach(p => {
-                    itemsHTML += `<li><span>${p.cant}x ${p.nombre}</span></li>`;
+                let totalPedido = 0;
+
+                // Adaptador para estructura de platos (soporta tanto 'platos' como 'items')
+                const listaItems = orden.items || orden.platos || [];
+                
+                listaItems.forEach(p => {
+                    const cantidad = p.cantidad || p.cant || 1;
+                    const precio = p.precio ? `($${(p.precio * cantidad).toLocaleString('es-CO')})` : '';
+                    itemsHTML += `<li><span>${cantidad}x ${p.nombre}</span> <small>${precio}</small></li>`;
                 });
 
-                const estaCompletada = orden.completada;
+                const estaCompletada = orden.completada || false;
+                const cliente = orden.cliente || orden.mesa || 'Cliente';
+                const hora = orden.fecha || orden.hora || 'Ahora';
+                const total = orden.total ? `$${orden.total.toLocaleString('es-CO')} COP` : '';
 
                 acumuladoHTML += `
-                    <div class="orden-card ${estaCompletada ? 'completada' : ''}" id="orden-${orden.id}">
-                        <div class="mesa-tag">Mesa ${orden.mesa}</div>
-                        <h3 style="margin-top: 0;">Orden #${orden.id}</h3>
-                        <div class="cliente-info">👤 ${orden.cliente} | 🕒 ${orden.hora}</div>
+                    <div class="orden-card ${estaCompletada ? 'completada' : ''}">
+                        <div class="cliente-tag">👤 ${cliente}</div>
+                        <h3 style="margin-top: 0; color: #052659;">Orden #${index + 1}</h3>
+                        <div class="cliente-info">🕒 Recibido: ${hora}</div>
                         <ul class="lista-platos">
                             ${itemsHTML}
                         </ul>
+                        ${total ? `<div class="total-pedido">Total: ${total}</div>` : ''}
                         <button class="btn-despachar ${estaCompletada ? 'btn-completado' : ''}" 
-                                onclick="alternarEstadoOrden(${orden.id})">
-                            ${estaCompletada ? '✓ Completado (Haz clic para deshacer)' : 'Despachar Pedido ✓'}
+                                onclick="alternarEstadoOrden(${index})">
+                            ${estaCompletada ? '✓ Completado (Deshacer)' : 'Despachar Pedido ✓'}
                         </button>
+                        <button class="btn-eliminar" onclick="eliminarOrden(${index})">Eliminar Comanda</button>
                     </div>
                 `;
             });
@@ -105,25 +134,44 @@
             contenedor.innerHTML = acumuladoHTML;
         }
 
-        function alternarEstadoOrden(id) {
-            const orden = ordenesPendientes.find(o => o.id === id);
-            if (orden) {
-                orden.completada = !orden.completada;
-                renderizarOrdenes(); 
+        function alternarEstadoOrden(index) {
+            ordenesPendientes[index].completada = !ordenesPendientes[index].completada;
+            guardarYRenderizar();
+        }
+
+        function eliminarOrden(index) {
+            if (confirm("¿Estás seguro de eliminar esta comanda?")) {
+                ordenesPendientes.splice(index, 1);
+                guardarYRenderizar();
             }
+        }
+
+        function limpiarTodosLosPedidos() {
+            if (confirm("⚠️ ¿Deseas borrar TODOS los pedidos recibidos?")) {
+                ordenesPendientes = [];
+                guardarYRenderizar();
+            }
+        }
+
+        function guardarYRenderizar() {
+            localStorage.setItem('pedidosMivith', JSON.stringify(ordenesPendientes));
+            renderizarOrdenes();
+        }
+
+        function buscarNuevasOrdenes() {
+            // Sincroniza pedidos si se agrega uno nuevo en otra pestaña/dispositivo local
+            ordenesPendientes = JSON.parse(localStorage.getItem('pedidosMivith')) || [];
+            renderizarOrdenes(); 
         }
 
         function cerrarSesion() {
             sessionStorage.removeItem('adminAutenticado');
-            window.location.href = "index.html";
+            window.location.href = "../index.html";
         }
 
-        function buscarNuevasOrdenes() {
-            renderizarOrdenes(); 
-        }
-
+        // Cargar e iniciar actualización automática cada 3 segundos
         renderizarOrdenes();
-        setInterval(buscarNuevasOrdenes, 5000);
+        setInterval(buscarNuevasOrdenes, 3000);
     </script>
 </body>
 </html>
