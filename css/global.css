@@ -41,6 +41,22 @@ nav a:hover { color: #f97316; }
     color: #fff9f5;
 }
 
+/* --- BOTÓN ADMIN EN EL NAVBAR --- */
+nav .nav-admin {
+    background-color: #052659;
+    color: #ffffff !important;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 5px;
+}
+
+nav .nav-admin:hover {
+    background-color: #7da0ca;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+}
 /* PIE DE PÁGINA GLOBAL */
 .site-footer { background: black; color: #f59e0b; padding: 50px 20px 20px; margin-top: 50px; }
 .footer-container { display: flex; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: 0 auto; }
