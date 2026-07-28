@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/menu.css">
     <style>
-        /* Estilos Integrados para el Carrito y la Carta */
+        /* Estilos Compactos y Flotantes del Carrito */
         .columna-carta {
-            max-height: 500px;
+            max-height: 520px;
             overflow-y: auto;
             padding-right: 5px;
         }
@@ -237,7 +237,7 @@
                 </div>
             </div>
 
-            <!-- PROMOCIONES -->
+            <!-- NUEVO: COMBOS -->
             <div class="columna-carta">
                 <h3 class="titulo-categoria" style="color: #f1c40f;">Promociones</h3>
                 <div class="item-carta">
@@ -327,7 +327,7 @@
         </div>
     </footer>
 
-    <!-- Lógica JavaScript del Carrito -->
+    <!-- Lógica JavaScript Corregida -->
     <script>
         let carrito = [];
 
@@ -402,23 +402,31 @@
             contadorElemento.innerText = totalCantidad;
         }
 
+        /* AQUÍ ESTÁ EL CAMBIO IMPORTANTE: */
         function enviarPedidoAlAdmin() {
             if (carrito.length === 0) {
                 alert("🛒 Selecciona al menos un producto para realizar tu pedido.");
                 return;
             }
 
-            const cliente = prompt("Por favor, ingresa tu Nombre o Número de Mesa:") || "Mesa General";
+            // Pedimos el nombre/mesa
+            const cliente = prompt("Por favor, ingresa tu Nombre o Número de Mesa:");
 
+            // Validación: Si presiona Cancelar o lo deja vacío, CANCELA TODO y sale
+            if (cliente === null || cliente.trim() === "") {
+                alert("❌ El envío del pedido fue cancelado.");
+                return; 
+            }
+
+            // Si el cliente sí escribió algo, procesa la orden
             const nuevoPedido = {
                 id: Date.now(),
-                cliente: cliente,
+                cliente: cliente.trim(),
                 fecha: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                 items: carrito,
                 total: carrito.reduce((acc, i) => acc + (i.precio * i.cantidad), 0)
             };
 
-            // Guarda el pedido en LocalStorage compartida con admin.html
             let pedidosGuardados = JSON.parse(localStorage.getItem('pedidosMivith')) || [];
             pedidosGuardados.push(nuevoPedido);
             localStorage.setItem('pedidosMivith', JSON.stringify(pedidosGuardados));
@@ -430,6 +438,5 @@
             toggleCarrito();
         }
     </script>
-
 </body>
 </html>
