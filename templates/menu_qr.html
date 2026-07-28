@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú QR - Mivith</title>
+    <!-- Enlaces a tus hojas de estilo -->
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/menu.css">
-    <!-- Aquí vinculamos el nuevo archivo CSS separado -->
     <link rel="stylesheet" href="../css/menu-qr.css">
 </head>
 <body>
 
+    <!-- Encabezado simple sin menú de navegación público -->
     <header style="text-align: center; padding: 15px 0;">
         <h1 style="margin:0;">Mivith - Pedido en Mesa <span id="numero-mesa-titulo"></span></h1>
     </header>
@@ -160,19 +161,20 @@
     <script>
         let carrito = [];
         
-        // --- NUEVO: LECTURA DE MESA DESDE LA URL DEL QR ---
+        // Detección automática del número de mesa desde la URL del código QR
         const urlParams = new URLSearchParams(window.location.search);
-        const mesaQR = urlParams.get('mesa'); // Busca si la URL dice ?mesa=X
+        const mesaQR = urlParams.get('mesa');
         
-        // Si detecta una mesa en la URL, la muestra en el título
         if(mesaQR) {
             document.getElementById('numero-mesa-titulo').innerText = "(Mesa " + mesaQR + ")";
         }
 
+        // Lógica para abrir y cerrar el panel lateral
         function toggleCarrito() {
             document.getElementById('cart-sidebar').classList.toggle('active');
         }
 
+        // Lógica para agregar productos
         function agregarAlCarrito(nombre, precio) {
             const itemExistente = carrito.find(item => item.nombre === nombre);
             if (itemExistente) {
@@ -184,6 +186,7 @@
             document.getElementById('cart-sidebar').classList.add('active');
         }
 
+        // Lógica para sumar o restar cantidades dentro del carrito
         function cambiarCantidad(nombre, cambio) {
             const item = carrito.find(i => i.nombre === nombre);
             if (item) {
@@ -195,6 +198,7 @@
             actualizarInterfazCarrito();
         }
 
+        // Lógica para actualizar los totales y la lista visual del pedido
         function actualizarInterfazCarrito() {
             const contenedorItems = document.getElementById('cart-items');
             const totalElemento = document.getElementById('cart-total');
@@ -240,13 +244,13 @@
             contadorElemento.innerText = totalCantidad;
         }
 
+        // Lógica para procesar el envío del pedido
         function enviarPedidoAlAdmin() {
             if (carrito.length === 0) {
                 alert("🛒 Selecciona al menos un producto para realizar tu pedido.");
                 return;
             }
 
-            // Si detectó una mesa en el QR, la pone por defecto en la alerta
             let nombrePorDefecto = mesaQR ? `Mesa ${mesaQR}` : "";
             const cliente = prompt("Por favor, confirma tu Nombre o Número de Mesa:", nombrePorDefecto);
 
