@@ -41,7 +41,6 @@ nav a:hover { color: #f97316; }
     color: #fff9f5;
 }
 
-/* --- BOTÓN ADMIN EN EL NAVBAR --- */
 nav .nav-admin {
     background-color: #052659;
     color: #ffffff !important;
@@ -57,7 +56,6 @@ nav .nav-admin:hover {
     color: #ffffff !important;
     transform: translateY(-2px);
 }
-/* PIE DE PÁGINA GLOBAL */
 .site-footer { background: black; color: #f59e0b; padding: 50px 20px 20px; margin-top: 50px; }
 .footer-container { display: flex; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: 0 auto; }
 .footer-col { flex: 1; min-width: 200px; }
