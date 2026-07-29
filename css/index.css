@@ -17,7 +17,6 @@
     margin: 0 auto; 
 }
 
-/* cuadricula*/
 .menu-grid { 
     display: grid; 
     grid-template-columns: repeat(2, 1fr); 
@@ -34,7 +33,6 @@
     border-top: 4px solid #d35400; 
 }
 
-/* fotos cuadricula */
 .img-combo {
     width: 60%; 
     max-width: 160px; 
