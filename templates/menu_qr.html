@@ -150,8 +150,20 @@
     </div>
 
     <script type="module">
-        import { db } from '../controllers/firebase-config.js';
-        import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "TU_API_KEY",
+            authDomain: "TU_AUTH_DOMAIN",
+            projectId: "TU_PROJECT_ID",
+            storageBucket: "TU_STORAGE_BUCKET",
+            messagingSenderId: "TU_MESSAGING_SENDER_ID",
+            appId: "TU_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
         let carrito = [];
         
@@ -267,7 +279,7 @@
                 window.toggleCarrito();
             } catch (error) {
                 console.error("Error al enviar pedido:", error);
-                alert("❌ Hubo un error al enviar tu pedido. Revisa tu conexión.");
+                alert("❌ Hubo un error al enviar tu pedido. Revisa tu conexión o las claves de Firebase.");
             } finally {
                 btnSubmit.innerText = "Enviar Pedido al Admin";
                 btnSubmit.disabled = false;
