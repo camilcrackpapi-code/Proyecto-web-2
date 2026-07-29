@@ -12,32 +12,73 @@
     <div class="sidebar">
         <h2>Mivith Admin</h2>
         <ul class="menu-lateral">
-            <li class="activo">🔔 Órdenes Activas</li>
+            <li id="tab-ordenes" class="activo" onclick="mostrarSeccion('ordenes')">🔔 Órdenes Activas</li>
+            <li id="tab-combos" onclick="mostrarSeccion('combos')">🖼️ Editar Combos</li>
             <li onclick="cerrarSesion()">🚪 Cerrar Sesión</li>
         </ul>
     </div>
 
     <div class="main-content">
-        <div class="header-panel">
-            <div>
-                <h1 style="margin: 0;">Monitor de Cocina (Comandas)</h1>
-                <p style="margin: 5px 0 0 0; color: #7da0ca;">Pedidos recibidos desde el menú web en tiempo real</p>
+        <div id="seccion-ordenes" class="seccion-panel activa">
+            <div class="header-panel">
+                <div>
+                    <h1 style="margin: 0;">Monitor de Cocina (Comandas)</h1>
+                    <p style="margin: 5px 0 0 0; color: #7da0ca;">Pedidos recibidos desde el menú web en tiempo real</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <button class="btn-limpiar-todo" onclick="limpiarTodosLosPedidos()">🗑️ Borrar Historial</button>
+                    <div class="reloj" id="reloj">--:--:--</div>
+                </div>
             </div>
-            <div style="display: flex; align-items: center; gap: 20px;">
-                <button class="btn-limpiar-todo" onclick="limpiarTodosLosPedidos()">🗑️ Borrar Historial</button>
-                <div class="reloj" id="reloj">--:--:--</div>
-            </div>
+
+            <div class="ordenes-grid" id="contenedorOrdenes"></div>
         </div>
 
-        <div class="ordenes-grid" id="contenedorOrdenes"></div>
+        <div id="seccion-combos" class="seccion-panel">
+            <div class="header-panel">
+                <div>
+                    <h1 style="margin: 0;">Editar Combos de la Galería</h1>
+                    <p style="margin: 5px 0 0 0; color: #7da0ca;">Pega la URL de cada imagen, su nombre y su precio.</p>
+                </div>
+            </div>
+
+            <div class="editor-combos">
+                <form id="formCombos">
+                    <div id="listaFilasCombos">
+                        <p style="color: #7da0ca;">Cargando editor...</p>
+                    </div>
+                    <button type="submit" class="btn-guardar-combos">💾 Guardar Todos los Cambios</button>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script type="module">
         import { auth, db } from '../controllers/firebase-config.js';
         import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-        import { collection, onSnapshot, doc, updateDoc, deleteDoc, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+        import { collection, onSnapshot, doc, updateDoc, deleteDoc, query, orderBy, getDocs, setDoc } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-        // 1. Verificación de Autenticación con Firebase Auth
+        const combosIniciales = [
+            { id: "combo1", nombre: "Combo 1", descripcion: "4 Hamburguesas Clásicas<br>Gaseosa 1.5L", precio: "$65.000 COP", img: "https://images.unsplash.com/photo-1594212202941-69234857c0e9?auto=format&fit=crop&w=800&q=80" },
+            { id: "combo2", nombre: "Combo 2", descripcion: "2 Hamburguesas Clásicas<br>2 Papas + Gaseosa 1L", precio: "$45.000 COP", img: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80" },
+            { id: "combo3", nombre: "Combo 3", descripcion: "1 Hamburguesa Especial<br>1 Perro Clásico<br>2 Papas + Gaseosa 1L", precio: "$35.000 COP", img: "https://images.unsplash.com/photo-1605040683050-717013ba0d6b?auto=format&fit=crop&w=800&q=80" },
+            { id: "combo4", nombre: "Combo 4", descripcion: "2 Hamburguesas<br>2 Perros Especiales<br>2 Papas + Gaseosa 1.5L", precio: "$68.000 COP", img: "https://images.unsplash.com/photo-1610440042657-612c34d95e9f?auto=format&fit=crop&w=800&q=80" }
+        ];
+
+        window.mostrarSeccion = (seccion) => {
+            document.querySelectorAll('.seccion-panel').forEach(s => s.classList.remove('activa'));
+            document.querySelectorAll('.menu-lateral li').forEach(l => l.classList.remove('activo'));
+
+            if (seccion === 'ordenes') {
+                document.getElementById('seccion-ordenes').classList.add('activa');
+                document.getElementById('tab-ordenes').classList.add('activo');
+            } else if (seccion === 'combos') {
+                document.getElementById('seccion-combos').classList.add('activa');
+                document.getElementById('tab-combos').classList.add('activo');
+                cargarEditorCombos();
+            }
+        };
+
         onAuthStateChanged(auth, (usuario) => {
             if (!usuario) {
                 alert("Acceso denegado. Debes iniciar sesión como administrador.");
@@ -45,14 +86,12 @@
             }
         });
 
-        // Cerrar sesión
         window.cerrarSesion = () => {
             signOut(auth).then(() => {
                 window.location.href = "../index.html";
             });
         };
 
-        // Reloj en tiempo real
         function actualizarReloj() {
             const ahora = new Date();
             document.getElementById('reloj').innerText = ahora.toLocaleTimeString();
@@ -60,7 +99,6 @@
         setInterval(actualizarReloj, 1000);
         actualizarReloj();
 
-        // 2. Escuchar pedidos en tiempo real desde Firestore
         const q = query(collection(db, "pedidos"), orderBy("timestamp", "desc"));
 
         onSnapshot(q, (snapshot) => {
@@ -119,19 +157,14 @@
             contenedor.innerHTML = acumuladoHTML;
         });
 
-        // 3. Modificar estado de la orden en Firestore
         window.alternarEstadoOrden = async (id, estadoActual) => {
             try {
-                const refPedido = doc(db, "pedidos", id);
-                await updateDoc(refPedido, {
-                    completada: !estadoActual
-                });
+                await updateDoc(doc(db, "pedidos", id), { completada: !estadoActual });
             } catch (error) {
                 console.error("Error al actualizar la comanda:", error);
             }
         };
 
-        // 4. Eliminar una comanda individual
         window.eliminarOrden = async (id) => {
             if (confirm("¿Estás seguro de eliminar esta comanda?")) {
                 try {
@@ -142,7 +175,6 @@
             }
         };
 
-        // 5. Borrar todo el historial de comandas
         window.limpiarTodosLosPedidos = async () => {
             if (confirm("⚠️ ¿Deseas borrar TODOS los pedidos recibidos?")) {
                 try {
@@ -154,6 +186,68 @@
                 }
             }
         };
+
+        async function cargarEditorCombos() {
+            const contenedor = document.getElementById('listaFilasCombos');
+            const snapshot = await getDocs(collection(db, "combos"));
+
+            let combos = [];
+            if (snapshot.empty) {
+                for (let c of combosIniciales) {
+                    await setDoc(doc(db, "combos", c.id), c);
+                }
+                combos = combosIniciales;
+            } else {
+                snapshot.forEach(d => combos.push({ id: d.id, ...d.data() }));
+            }
+
+            contenedor.innerHTML = '';
+            combos.forEach((combo, index) => {
+                contenedor.innerHTML += `
+                    <div class="fila-imagen" data-id="${combo.id}">
+                        <div class="preview">
+                            <img id="prev-${index}" src="${combo.img}" alt="Vista previa" onerror="this.src='https://via.placeholder.com/150?text=Error+Imagen'">
+                        </div>
+                        <div class="campos">
+                            <label>Combo #${index + 1} · URL de la Imagen</label>
+                            <input type="url" id="url-${index}" value="${combo.img}" required oninput="document.getElementById('prev-${index}').src = this.value">
+                            
+                            <label>Nombre del Combo</label>
+                            <input type="text" id="nombre-${index}" value="${combo.nombre || ''}" required>
+                            
+                            <label>Precio</label>
+                            <input type="text" id="precio-${index}" value="${combo.precio || ''}" placeholder="$00.000 COP" required>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        document.getElementById('formCombos').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const filas = document.querySelectorAll('.fila-imagen');
+            const btnSubmit = e.target.querySelector('button[type="submit"]');
+            btnSubmit.innerText = "Guardando...";
+            btnSubmit.disabled = true;
+
+            try {
+                for (let i = 0; i < filas.length; i++) {
+                    const id = filas[i].getAttribute('data-id');
+                    const img = document.getElementById(`url-${i}`).value.trim();
+                    const nombre = document.getElementById(`nombre-${i}`).value.trim();
+                    const precio = document.getElementById(`precio-${i}`).value.trim();
+
+                    await updateDoc(doc(db, "combos", id), { img, nombre, precio });
+                }
+                alert("✅ ¡Todos los combos han sido actualizados con éxito!");
+            } catch (error) {
+                console.error("Error al guardar combos:", error);
+                alert("❌ Ocurrió un error al guardar los datos.");
+            } finally {
+                btnSubmit.innerText = "💾 Guardar Todos los Cambios";
+                btnSubmit.disabled = false;
+            }
+        });
     </script>
 </body>
 </html>
